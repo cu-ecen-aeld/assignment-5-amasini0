@@ -1,0 +1,7 @@
+config BR2_PACKAGE_LDD
+    bool "LDD kernel modules"
+    help
+      Kernel modules provided in the LDD3 repository (used in Coursera
+      buildroot and yocto course).
+      
+      https://github.com/cu-ecen-aeld/assignment-7-amasini0.git

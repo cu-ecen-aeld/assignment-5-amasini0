@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Init script to load faulty and scull modules at startup.
+case $1 in
+    start)
+        /etc/lddmodules/scull_load.sh
+        echo "Loading scull.ko: OK"
+        /etc/lddmodules/module_load.sh faulty
+        echo "Loading faulty.ko: OK"
+        modprobe hello.ko
+        echo "Loading hello.ko: OK"
+
+        ;;
+
+    stop)
+        /etc/lldmodules/module_unload.sh faulty
+        echo "Unloading faulty.ko: OK"
+        /etc/lldmodules/scull_unload.sh
+        echo "Unloading scull.ko: OK"
+        modprobe -r hello.ko
+        echo "Unloading hello.ko: OK"
+        ;;
+
+    *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+esac
